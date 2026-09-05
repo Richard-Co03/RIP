@@ -1,0 +1,2 @@
+- To the llama folder add a folder calld: Model
+- Then from https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/tree/main download the model and put it inside that folder
