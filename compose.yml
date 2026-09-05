@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    ports:
+      - "5000:5000"
+      - "6000:6000"
+      - "8000:8000"
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui
+    ports:
+      - "3000:8080"
+    environment:
+      OPENAI_API_BASE_URL: http://backend:8000
+    volumes:
+      - open-webui-data:/app/backend/data
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  open-webui-data:
